@@ -17,7 +17,10 @@ class Home extends BaseController
 
     public function index()
     {
-        $data['antrian'] = $this->AntrianModel->getAll();
+        $data = [
+            'title' => 'Selamat Datang di Ruang Tunggu Antrian Mohon Untuk Selalu Menjaga Kebersihan',
+            'antrian' => $this->AntrianModel->getAll()
+        ];
         // dd($data);
         return view('index', $data);
     }
@@ -35,4 +38,10 @@ class Home extends BaseController
 
     //     return view('/index', $data);
     // }
+
+//     public function delete($id)
+//   {
+//     $this->AntrianModel->delete($id);
+//     return redirect()->to('/');
+//   }
 }

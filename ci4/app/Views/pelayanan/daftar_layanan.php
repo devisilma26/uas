@@ -30,7 +30,7 @@ $timestamp = $dt->format('Y/m/d | G:i');
           </div>
           <div class="col">
           <label for="" class="form-label">ID</label>
-            <input type="text" name="pelayanan_id" class="form-control mb-3 w-50" id="floatingInput" placeholder="" value="<?= $id ?>" readonly>
+            <input type="number" name="pelayanan_id" class="form-control mb-3 w-50" id="floatingInput" placeholder="" value="<?= $id ?>" readonly>
           </div>
         </div>
         <div class="row">

@@ -18,7 +18,12 @@ class Loket extends BaseController
 
   public function index($id)
   {
-    $data['loket'] = $this->LoketModel->index($id);
+    $q = $this->request;
+    $data = 
+    [
+      'title' => 'Admin',
+      'loket' => $this->LoketModel->index($id)
+    ];
     return view('/loket/index', $data);
   }
 
@@ -40,6 +45,12 @@ class Loket extends BaseController
     return redirect()->to('/index');
   }
 
+  public function delete($id)
+  {
+    $this->AntrianModel->delete($id);
+    return redirect()->to('/loket/index');
+  }
+
   // public function panggil($id)
   // {
   //   $data = [
@@ -53,10 +64,12 @@ class Loket extends BaseController
   {
     session();
     $data = [
-      'title' => 'Form Edit Data Warga',
+      'title' => 'Selamat Datang di Ruang Tunggu Antrian Mohon Untuk Selalu Menjaga Kebersihan',
       'validation' => \Config\Services::validation(),
       'pelayanan' => $this->PelayananModel->getAll($id)
     ];
+
+    $data['antrian'] = $this->AntrianModel->getAll();
     return view('/loket/ambil_loket', $data);
   }
 
@@ -70,5 +83,6 @@ class Loket extends BaseController
     // dd($data);
     $this->LoketModel->save($data);
     return redirect()->to('/loket/index');
+    return view('/loket/ambil_loket', $data);
   }
 }

@@ -32,14 +32,16 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/hapus/(:any)', 'Home::delete/$1');
 $routes->get('/pelayanan/index', 'Pelayanan::index');
 $routes->get('/pelayanan/daftar_layanan', 'Pelayanan::daftar');
 $routes->get('/loket/index', 'Loket::index/$1');
 $routes->get('/loket/pelayanan_loket', 'Loket::pelayanan_loket');
 $routes->get('/loket/ambil_loket', 'Loket::panggil/$1');
+$routes->get('/loket/ambil_loket', 'Loket::panggil');
 $routes->get('/loket/ambil_loket/(:any)', 'Loket::panggil/$1');
 $routes->post('/loket/save', 'Loket::save');
-
+$routes->get('/loket/hapus/(:any)', 'Loket::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

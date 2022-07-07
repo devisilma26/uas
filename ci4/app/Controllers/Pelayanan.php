@@ -17,16 +17,25 @@ class Pelayanan extends BaseController
 
     public function index()
     {
-        $data['pelayanan'] = $this->AntrianModel->getAll();
+        $data = 
+        [
+            'title' => 'Menu Layanan',
+            'pelayanan' =>  $this->AntrianModel->getAll()
+        ];
+       
         return view('/pelayanan/index', $data);
     }
+
+
+
+
 
     public function daftar()
     {
         $no_antri = $this->PelayananModel->id();
         $no_pendaftaran = $this->PelayananModel->noPendaftaran();
         $data = [
-            'title' => 'Pendaftaran 1',
+            'title' => 'Pendaftaran',
             'no_pendaftaran' => $no_pendaftaran,
             'id' => $no_antri,
             'validation' => \config\Services::validation(),
@@ -43,8 +52,9 @@ class Pelayanan extends BaseController
         $tanggal = $this->request->getVar('tanggal');
         $pelayanan_id = $this->request->getVar('pelayanan_id');
         $loket_id = $this->request->getVar('pelayanan_id');
-        $id = $this->request->getVar('id');
+        $id = $this->request->getVar('pelayanan_id');
         $data = [
+            // 'id' =>$id,
             'nama' => $nama,
             'kode' => $kode,
             'tanggal' => $tanggal,

@@ -1,11 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('dasbord'); ?>
 
-<div class="container">
-  <div class="main">
-    <h1>Daftar Layanan</h1>
-  </div>
-  
+<div class="container">  
   <div class="row pt-5">
     <div class="col">
       <a href="/" class="btn border bg-success bg-gradient w-100 text-light p-4"><h2>Menu Antrian</h2></a>

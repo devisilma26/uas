@@ -35,7 +35,8 @@ class PelayananModel extends Model
     if ($kode['kode'] == null) {
       $no = 1; #Jika kode belum terisi maka akan di mualai dengan aka 01
     } else {
-      $no = intval($kode['kode']) + 1; # Jika kode sudah terisi maka 1 + 1
+      $no = intval($kode['kode']) + 1; 
+      # Jika kode sudah terisi maka 1 + 1
     }
     $batas = str_pad($no, 2, "0", STR_PAD_LEFT);
     $no_pendaftaran = $batas;
@@ -45,18 +46,33 @@ class PelayananModel extends Model
 
   public function id()
   {
+
     $kode = $this->db->table('pelayanan')
-      ->select('RIGHT(id,5) as id', false)
-      ->orderBy('id', 'DESC')
-      ->limit(1)->get()->getRowArray();
+            -> select('MAX(id) AS id', false)
+            -> orderBy('id','DESC')
+            ->limit(1)->get()->getRowArray();
 
-    if ($kode['id'] == null) {
-      $no = 1;
-    } else {
-      $no = intval($kode['id']) + 1;
-    }
+            if ($kode['id'] == 1) {
+              $no = 1;
+            } else {
+              $no = intval($kode['id'])+1;
+            }
+            // ->get()->getRowArray();
 
+
+    // $kode = $this->db->table('pelayanan')
+    //   ->select('MAX(id,2) as id', false)
+    //   ->orderBy('id', 'ASC')
+    //   ->limit(1)->get()->getRowArray();
+
+    // if ($kode['id'] == null) {
+    //   $no = 1;
+    // } else {
+    //   $no = intval($kode['id'])+1;
+    // }
+    // $batas = str_pad($no, 2,"1", STR_PAD_RIGHT);
     // $no_antri = $no;
+    // $no_pendaftaran = $batas;
     return $no;
   }
 }
